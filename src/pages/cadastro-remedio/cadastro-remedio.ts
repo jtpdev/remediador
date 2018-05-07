@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CadastroRemedioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Remedio } from '../../models/remedio';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CadastroRemedioPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  remedio: Remedio;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroRemedioPage');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    this.remedio = new Remedio();
   }
 
 }
