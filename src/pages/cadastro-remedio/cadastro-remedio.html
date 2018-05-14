@@ -16,6 +16,11 @@
     </ion-item>
     
     <ion-item>
+      <ion-label>Código de barras:</ion-label>
+      <ion-input type="number" [(ngModel)]="remedio.codigoBarras"></ion-input>
+    </ion-item>
+    
+    <ion-item>
       <ion-label>Horário inicial</ion-label>
       <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="remedio.horario"></ion-datetime>
     </ion-item>

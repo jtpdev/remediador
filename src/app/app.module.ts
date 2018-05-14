@@ -4,10 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { SQLite } from '@ionic-native/sqlite';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CadastroRemedioPageModule } from '../pages/cadastro-remedio/cadastro-remedio.module';
 import { RemedioProvider } from '../providers/remedio/remedio';
+import { DaoProvider } from '../providers/dao/dao';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import { RemedioProvider } from '../providers/remedio/remedio';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RemedioProvider
+    RemedioProvider,
+    DaoProvider,
+    SQLite,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
