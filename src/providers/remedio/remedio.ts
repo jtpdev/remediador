@@ -19,7 +19,7 @@ export class RemedioProvider {
     private daoProvider: DaoProvider
   ) { }
  
-  public insert(remedio: Remedio) {
+  public save(remedio: Remedio) {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
         let sql = 'insert into remedio (nome, horario, vezesaodia, qtddias, codigobarras) values (?, ?, ?, ?, ?)';

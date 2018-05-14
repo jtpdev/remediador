@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Remedio } from '../../models/remedio';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { RemedioProvider } from '../../providers/remedio/remedio';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,8 @@ export class CadastroRemedioPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private barcodeScanner: BarcodeScanner
+    private barcodeScanner: BarcodeScanner,
+    private remedioProvider: RemedioProvider
   ) {
     this.remedio = new Remedio();
   }
@@ -28,6 +30,10 @@ export class CadastroRemedioPage {
         console.log('Erro ao escanear o código', err);
       });
     }
+  }
+
+  salvar() {
+    this.remedioProvider.save(this.remedio);
   }
 
 }
