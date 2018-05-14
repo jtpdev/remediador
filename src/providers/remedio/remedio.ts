@@ -1,21 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { SQLiteObject } from '@ionic-native/sqlite';
 import { DaoProvider } from '../dao/dao';
 import { Remedio } from '../../models/remedio';
 
-/*
-  Generated class for the RemedioProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class RemedioProvider {
 
   constructor(
-    public http: HttpClient, 
     private daoProvider: DaoProvider
   ) { }
  

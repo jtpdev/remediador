@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
@@ -9,7 +8,6 @@ export class DaoProvider {
   private readonly creates = ['CREATE TABLE IF NOT EXISTS remedio (id integer primary key AUTOINCREMENT NOT NULL, nome TEXT, horario TEXT, vezesaodia integer, qtddias integer, codigobarras integer)'];
 
   constructor(
-    public http: HttpClient,
     private sqlite: SQLite
   ) { }
 
