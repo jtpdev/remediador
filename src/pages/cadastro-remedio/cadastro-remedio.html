@@ -17,7 +17,7 @@
     
     <ion-item>
       <ion-label>Código de barras:</ion-label>
-      <ion-input type="number" [(ngModel)]="remedio.codigoBarras"></ion-input>
+      <ion-input type="number" [(ngModel)]="remedio.codigoBarras" (focus)="chamarScanner()"></ion-input>
     </ion-item>
     
     <ion-item>
