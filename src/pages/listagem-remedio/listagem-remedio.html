@@ -2,11 +2,19 @@
 
   <ion-navbar>
     <ion-title>listagem-remedio</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="apresentarMenu($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-  
+  <ion-list>
+    <button ion-item *ngFor="let remedio of remedios" [navPush]="remedioPage" [navParams]="{ id: remedio.id }">
+      {{ remedio.nome }}
+    </button>
+  </ion-list>
 </ion-content>

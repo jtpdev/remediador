@@ -12,6 +12,8 @@ import { HomePage } from '../pages/home/home';
 import { CadastroRemedioPageModule } from '../pages/cadastro-remedio/cadastro-remedio.module';
 import { RemedioProvider } from '../providers/remedio/remedio';
 import { DaoProvider } from '../providers/dao/dao';
+import { ListagemRemedioPageModule } from '../pages/listagem-remedio/listagem-remedio.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DaoProvider } from '../providers/dao/dao';
   ],
   imports: [
     BrowserModule,
-    CadastroRemedioPageModule, //Aqui está o nosso módulo
+    ComponentsModule,
+    CadastroRemedioPageModule,
+    ListagemRemedioPageModule, 
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

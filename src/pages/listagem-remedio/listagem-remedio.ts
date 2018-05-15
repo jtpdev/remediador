@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ListagemRemedioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { Remedio } from '../../models/remedio';
+import { RemedioProvider } from '../../providers/remedio/remedio';
+import { CadastroRemedioPage } from '../cadastro-remedio/cadastro-remedio';
+import { MenuComponent } from '../../components/menu/menu';
 
 @IonicPage()
 @Component({
@@ -15,11 +12,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ListagemRemedioPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  remedios: Remedio[];
+  remedioPage: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public popoverCtrl: PopoverController,
+    private remedioProvider: RemedioProvider
+  ) {
+    this.remedioPage = CadastroRemedioPage;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListagemRemedioPage');
+    this.remedioProvider.list().then(remedios => {
+      if (remedios) {
+        this.remedios = remedios
+      }
+    });
+  }
+
+  apresentarMenu(evento) {
+    let popover = this.popoverCtrl.create(MenuComponent);
+    popover.present();
   }
 
 }

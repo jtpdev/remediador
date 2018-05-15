@@ -75,22 +75,16 @@ export class RemedioProvider {
       .catch((e) => console.error(e));
   }
  
-  public list(active: boolean, name: string = null) {
+  public list() {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
-        let sql = 'select * from remedio where id = ?';
-        var data: any[] = [active ? 1 : 0];
- 
-        // filtrando pelo nome
-        if (name) {
-          sql += ' and p.name like ?'
-          data.push('%' + name + '%');
-        }
+        let sql = 'select * from remedio';
+        var data: any[] = [];
  
         return db.executeSql(sql, data)
           .then((data: any) => {
+            let remedios: Remedio[] = [];
             if (data.rows.length > 0) {
-              let remedios: any[] = [];
               for (var i = 0; i < data.rows.length; i++) {
                 let item = data.rows.item(i);
                 let remedio = new Remedio();
@@ -102,10 +96,8 @@ export class RemedioProvider {
                 remedio.codigoBarras = item.codigobarras;
                 remedios.push(remedio);
               }
-              return remedios;
-            } else {
-              return [];
             }
+            return remedios;
           })
           .catch((e) => console.error(e));
       })
