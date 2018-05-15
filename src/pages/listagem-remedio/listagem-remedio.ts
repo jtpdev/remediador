@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { Remedio } from '../../models/remedio';
 import { RemedioProvider } from '../../providers/remedio/remedio';
 import { CadastroRemedioPage } from '../cadastro-remedio/cadastro-remedio';
-import { MenuComponent } from '../../components/menu/menu';
 
 @IonicPage()
 @Component({
@@ -30,11 +29,6 @@ export class ListagemRemedioPage {
         this.remedios = remedios
       }
     });
-  }
-
-  apresentarMenu(evento) {
-    let popover = this.popoverCtrl.create(MenuComponent);
-    popover.present();
   }
 
 }

@@ -13,7 +13,6 @@ import { CadastroRemedioPageModule } from '../pages/cadastro-remedio/cadastro-re
 import { RemedioProvider } from '../providers/remedio/remedio';
 import { DaoProvider } from '../providers/dao/dao';
 import { ListagemRemedioPageModule } from '../pages/listagem-remedio/listagem-remedio.module';
-import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { ComponentsModule } from '../components/components.module';
   ],
   imports: [
     BrowserModule,
-    ComponentsModule,
     CadastroRemedioPageModule,
     ListagemRemedioPageModule, 
     IonicModule.forRoot(MyApp)
