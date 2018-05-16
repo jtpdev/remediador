@@ -5,7 +5,10 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 @Injectable()
 export class DaoProvider {
 
-  private readonly creates = ['CREATE TABLE IF NOT EXISTS remedio (id integer primary key AUTOINCREMENT NOT NULL, nome TEXT, horario TEXT, vezesaodia integer, qtddias integer, codigobarras integer)'];
+  private readonly creates = [
+    'CREATE TABLE IF NOT EXISTS remedio (id integer primary key AUTOINCREMENT NOT NULL, nome TEXT, horario TEXT, vezesaodia integer, qtddias integer, codigobarras integer)',
+    'CREATE TABLE IF NOT EXISTS configuracao (id integer primary key AUTOINCREMENT NOT NULL, pararcomescaneamento integer)'
+  ];
 
   constructor(
     private sqlite: SQLite
@@ -21,6 +24,7 @@ export class DaoProvider {
   public criar() {
     this.get().then(db => {
       this.criarTabelas(db);
+      this.inserirConfiguracao(db);
     })
       .catch(e => console.log(e));
   }
@@ -32,6 +36,14 @@ export class DaoProvider {
     ])
       .then(() => console.log('Tabela criada'))
       .catch(e => console.error('Erro ao criar a tabela', e));
+  }
+
+  private inserirConfiguracao(db: SQLiteObject) {
+    db.sqlBatch([
+      ['insert into configuracao (pararcomescaneamento) values (?)', [1]]
+    ])
+      .then(() => console.log('Configuração incluída com sucesso!'))
+      .catch(e => console.error('Erro ao incluir configuração', e));
   }
 
 }

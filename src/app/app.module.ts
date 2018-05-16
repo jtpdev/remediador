@@ -13,6 +13,8 @@ import { CadastroRemedioPageModule } from '../pages/cadastro-remedio/cadastro-re
 import { RemedioProvider } from '../providers/remedio/remedio';
 import { DaoProvider } from '../providers/dao/dao';
 import { ListagemRemedioPageModule } from '../pages/listagem-remedio/listagem-remedio.module';
+import { ConfiguracaoPageModule } from '../pages/configuracao/configuracao.module';
+import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ListagemRemedioPageModule } from '../pages/listagem-remedio/listagem-re
   imports: [
     BrowserModule,
     CadastroRemedioPageModule,
-    ListagemRemedioPageModule, 
+    ListagemRemedioPageModule,
+    ConfiguracaoPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -37,7 +40,8 @@ import { ListagemRemedioPageModule } from '../pages/listagem-remedio/listagem-re
     RemedioProvider,
     DaoProvider,
     SQLite,
-    BarcodeScanner
+    BarcodeScanner,
+    ConfiguracaoProvider
   ]
 })
 export class AppModule {}

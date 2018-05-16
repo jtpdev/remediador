@@ -1,22 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { SQLiteObject } from '@ionic-native/sqlite';
+import { Configuracao } from '../../models/configuracao';
 import { DaoProvider } from '../dao/dao';
-import { Remedio } from '../../models/remedio';
+import { SQLiteObject } from '@ionic-native/sqlite';
 import { ProvedorPadrao } from '../provedor-padrao';
 
 @Injectable()
-export class RemedioProvider implements ProvedorPadrao<Remedio> {
+export class ConfiguracaoProvider implements ProvedorPadrao<Configuracao> {
 
   constructor(
     private daoProvider: DaoProvider
-  ) { }
- 
-  public save(remedio: Remedio) {
+  ) {
+  }
+
+  public save(configuracao: Configuracao) {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
-        let sql = 'insert into remedio (nome, horario, vezesaodia, qtddias, codigobarras) values (?, ?, ?, ?, ?)';
-        let data = [remedio.nome, remedio.horario, remedio.vezesAoDia, remedio.qtdDias, remedio.codigoBarras];
+        let sql = 'insert into configuracao (pararcomescaneamento) values (?)';
+        let data = [configuracao.pararComEscaneamento];
  
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -24,11 +25,11 @@ export class RemedioProvider implements ProvedorPadrao<Remedio> {
       .catch((e) => console.error(e));
   }
  
-  public update(remedio: Remedio) {
+  public update(configuracao: Configuracao) {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
-        let sql = 'update remedio set nome = ?, horario = ?, vezesaodia = ?, qtddias = ?, codigobarras = ? where id = ?';
-        let data = [remedio.nome, remedio.horario, remedio.vezesAoDia, remedio.qtdDias, remedio.codigoBarras, remedio.id];
+        let sql = 'update configuracao set pararcomescaneamento = ? where id = ?';
+        let data = [configuracao.pararComEscaneamento, configuracao.id];
  
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -39,7 +40,7 @@ export class RemedioProvider implements ProvedorPadrao<Remedio> {
   public delete(id: number) {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
-        let sql = 'delete from remedio where id = ?';
+        let sql = 'delete from configuracao where id = ?';
         let data = [id];
  
         return db.executeSql(sql, data)
@@ -51,22 +52,18 @@ export class RemedioProvider implements ProvedorPadrao<Remedio> {
   public find(id: number) {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
-        let sql = 'select * from remedio where id = ?';
+        let sql = 'select * from configuracao where id = ?';
         let data = [id];
  
         return db.executeSql(sql, data)
           .then((data: any) => {
             if (data.rows.length > 0) {
               let item = data.rows.item(0);
-              let remedio = new Remedio();
-              remedio.id = item.id;
-              remedio.nome = item.nome;
-              remedio.horario = item.horario;
-              remedio.vezesAoDia = item.vezesaodia;
-              remedio.qtdDias = item.qtddias;
-              remedio.codigoBarras = item.codigobarras;
+              let configuracao = new Configuracao();
+              configuracao.id = item.id;
+              configuracao.pararComEscaneamento = item.pararcomescaneamento;
  
-              return remedio;
+              return configuracao;
             }
  
             return null;
@@ -79,26 +76,22 @@ export class RemedioProvider implements ProvedorPadrao<Remedio> {
   public list() {
     return this.daoProvider.get()
       .then((db: SQLiteObject) => {
-        let sql = 'select * from remedio';
+        let sql = 'select * from configuracao';
         var data: any[] = [];
  
         return db.executeSql(sql, data)
           .then((data: any) => {
-            let remedios: Remedio[] = [];
+            let configuracoes: Configuracao[] = [];
             if (data.rows.length > 0) {
               for (var i = 0; i < data.rows.length; i++) {
                 let item = data.rows.item(i);
-                let remedio = new Remedio();
-                remedio.id = item.id;
-                remedio.nome = item.nome;
-                remedio.horario = item.horario;
-                remedio.vezesAoDia = item.vezesaodia;
-                remedio.qtdDias = item.qtddias;
-                remedio.codigoBarras = item.codigobarras;
-                remedios.push(remedio);
+                let configuracao = new Configuracao();
+                configuracao.id = item.id;
+                configuracao.pararComEscaneamento = item.pararcomescaneamento;
+                configuracoes.push(configuracao);
               }
             }
-            return remedios;
+            return configuracoes;
           })
           .catch((e) => console.error(e));
       })
