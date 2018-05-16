@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { Remedio } from '../../models/remedio';
 import { RemedioProvider } from '../../providers/remedio/remedio';
 import { CadastroRemedioPage } from '../cadastro-remedio/cadastro-remedio';
+import { ConfiguracaoPage } from '../configuracao/configuracao';
 
 @IonicPage()
 @Component({
@@ -13,6 +14,7 @@ export class ListagemRemedioPage {
 
   remedios: Remedio[];
   remedioPage: any;
+  configuracaoPage: any;
 
   constructor(
     public navCtrl: NavController,
@@ -21,6 +23,7 @@ export class ListagemRemedioPage {
     private remedioProvider: RemedioProvider
   ) {
     this.remedioPage = CadastroRemedioPage;
+    this.configuracaoPage = ConfiguracaoPage;
   }
 
   ionViewDidLoad() {
@@ -29,6 +32,10 @@ export class ListagemRemedioPage {
         this.remedios = remedios
       }
     });
+  }
+
+  chamarConfiguracao() {
+    this.navCtrl.push(ConfiguracaoPage);
   }
 
 }

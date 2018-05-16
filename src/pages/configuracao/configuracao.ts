@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ConfiguracaoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Configuracao } from '../../models/configuracao';
+import { ConfiguracaoProvider } from '../../providers/configuracao/configuracao';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConfiguracaoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  configuracao: Configuracao;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private confProvider: ConfiguracaoProvider
+  ) {
+    this.configuracao = new Configuracao();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfiguracaoPage');
+  ionViewDidLoad(){
+   this.confProvider.list().then(confs => {
+     if(confs){
+       this.configuracao = confs[0];
+     }
+   })
   }
 
+  salvarAlteracao(valor: boolean) {
+    this.configuracao.pararComEscaneamento = valor;
+    const acao: (value: any) => void | PromiseLike<void> = conf => {
+      this.configuracao = conf;
+    };
+    if(this.configuracao.id) {
+      this.confProvider.update(this.configuracao).then(acao);
+    } else {
+      this.confProvider.save(this.configuracao).then(acao);
+    }
+  }
 }

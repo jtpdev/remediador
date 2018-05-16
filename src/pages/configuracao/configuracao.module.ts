@@ -8,6 +8,6 @@ import { ConfiguracaoPage } from './configuracao';
   ],
   imports: [
     IonicPageModule.forChild(ConfiguracaoPage),
-  ],
+  ]
 })
 export class ConfiguracaoPageModule {}

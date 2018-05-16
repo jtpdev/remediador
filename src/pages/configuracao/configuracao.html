@@ -1,12 +1,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>configuracao</ion-title>
+    <ion-title>Configuração</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-item>
+    <ion-label>Parar ao escanear remédio</ion-label>
+    <ion-toggle [ngModel]="configuracao?.pararComEscaneamento" (ngModelChange)="salvarAlteracao($event)"></ion-toggle>
+  </ion-item>
 
 </ion-content>
