@@ -33,7 +33,12 @@ export class CadastroRemedioPage {
   }
 
   salvar() {
-    this.remedioProvider.save(this.remedio);
+    this.remedioProvider.save(this.remedio)
+      .then(remedio => {
+        if (remedio) {
+          this.navCtrl.pop();
+        }
+      });
   }
 
 }

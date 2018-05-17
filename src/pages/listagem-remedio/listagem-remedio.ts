@@ -26,7 +26,7 @@ export class ListagemRemedioPage {
     this.configuracaoPage = ConfiguracaoPage;
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.remedioProvider.list().then(remedios => {
       if (remedios) {
         this.remedios = remedios
