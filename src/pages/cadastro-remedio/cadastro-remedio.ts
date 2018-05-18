@@ -32,6 +32,14 @@ export class CadastroRemedioPage {
     }
   }
 
+  podeSalvar(): any {
+    return this.remedio.codigoBarras
+      && this.remedio.horario
+      && this.remedio.nome
+      && this.remedio.qtdDias
+      && this.remedio.vezesAoDia;
+  }
+
   salvar() {
     this.remedioProvider.save(this.remedio)
       .then(remedio => {
