@@ -23,7 +23,7 @@ export class CadastroRemedioPage {
   }
 
   chamarScanner() {
-    if (!this.remedio.codigoBarras) {
+    if (!this.remedio.codigoBarras !== null) {
       this.barcodeScanner.scan().then(codigo => {
         this.remedio.codigoBarras = Number(codigo.text);
       }).catch(err => {
@@ -32,12 +32,12 @@ export class CadastroRemedioPage {
     }
   }
 
-  podeSalvar(): any {
-    return this.remedio.codigoBarras
-      && this.remedio.horario
-      && this.remedio.nome
-      && this.remedio.qtdDias
-      && this.remedio.vezesAoDia;
+  podeSalvar(): boolean {
+    return this.remedio.codigoBarras != null
+      && this.remedio.horario != null
+      && this.remedio.nome != null
+      && this.remedio.qtdDias != null
+      && this.remedio.vezesAoDia != null;
   }
 
   salvar() {
