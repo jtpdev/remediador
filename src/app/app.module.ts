@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { SQLite } from '@ionic-native/sqlite';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Push } from '@ionic-native/push';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -41,7 +42,8 @@ import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
     DaoProvider,
     SQLite,
     BarcodeScanner,
-    ConfiguracaoProvider
+    ConfiguracaoProvider,
+    Push
   ]
 })
 export class AppModule {}

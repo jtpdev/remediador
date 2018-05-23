@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SQLiteObject } from '@ionic-native/sqlite';
+
 import { Configuracao } from '../../models/configuracao';
 import { DaoProvider } from '../dao/dao';
-import { SQLiteObject } from '@ionic-native/sqlite';
 import { ProvedorPadrao } from '../provedor-padrao';
 
 @Injectable()
