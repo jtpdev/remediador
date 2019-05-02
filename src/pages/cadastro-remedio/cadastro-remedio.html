@@ -37,7 +37,6 @@
   </ion-list>
 
   <div padding>
-    <button ion-button *ngIf="!podeSalvar()" disabled block>Cadastrar</button>
-    <button ion-button (click)="salvar()" *ngIf="podeSalvar()" block>Cadastrar</button>
+    <button ion-button color="rosa" (click)="salvar()" [disabled]="!podeSalvar()" block>Cadastrar</button>
   </div>
 </ion-content>
