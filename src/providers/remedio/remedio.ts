@@ -40,7 +40,7 @@ export class RemedioProvider implements ProvedorPadrao<Remedio> {
         }
         this.localNotifications.schedule({
           text: 'É hora de tomar: ' + remedio.nome,
-          trigger: { at: new Date(new Date().getTime() + 3600) },
+          trigger: { at: new Date(remedio.horario.getTime() + dias + horas) },
           led: 'FF0000',
           sound: this.platform.is('android') ? 'file://sound.mp3' : 'file://beep.caf',
         });
