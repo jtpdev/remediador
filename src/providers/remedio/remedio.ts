@@ -32,15 +32,15 @@ export class RemedioProvider implements ProvedorPadrao<Remedio> {
   public configurarNotificacoes(remedio: Remedio) {
     for (let i = 0; i <= remedio.qtdDias; i++) {
       for (let j = 0; j <= remedio.vezesAoDia; j++) {
-        let horas = (3600 * 60 * (24 / remedio.vezesAoDia) * j);
-        let dias = (3600 * 60 * 24 * i);
+        let horas = (3600 * 1000 * (24 / remedio.vezesAoDia) * j);
+        let dias = (3600 * 1000 * 24 * i);
         if (remedio.horario < new Date()) {
-          horas = (3600 * 60 * remedio.vezesAoDia * (j+1));
-          dias = (3600 * 60 * 24 * (i+1));
+          horas = (3600 * 1000 * remedio.vezesAoDia * (j+1));
+          dias = (3600 * 1000 * 24 * (i+1));
         }
         this.localNotifications.schedule({
           text: 'É hora de tomar: ' + remedio.nome,
-          trigger: { at: new Date(remedio.horario.getTime() + dias + horas) },
+          trigger: { at: new Date(new Date().getTime() + 3600) },
           led: 'FF0000',
           sound: this.platform.is('android') ? 'file://sound.mp3' : 'file://beep.caf',
         });
